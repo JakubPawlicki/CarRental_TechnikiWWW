@@ -1,0 +1,67 @@
+<div class="card p-5 mb-4">
+    <div class="cardbody">
+        <h3 class="mb-3">Wyszukaj odpowiedni samochód</h3>
+        <form action="/cars" method="POST">
+            <div class="row mb-3">
+                <div class="col">
+                    <input type="number" name="number_of_passengers" class="form-control" placeholder="Liczba osób"
+                           min="1"
+                           max="8" required>
+                </div>
+                <div class="col">
+                    <input type=number name="max_price" class="form-control" placeholder="Maksymalna cena" min="1"
+                           required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="col">
+                    <select class="form-select" name="category">
+                        <option value="Normal">Normal</option>
+                        <option value="Premium">Premium</option>
+                        <option value="Luxury">Luxury</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" name="all" type="checkbox" value="true" id="all">
+                <label class="form-check-label" for="all">
+                    Wszystkie kryteria muszą zostać spełnione
+                </label>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">Wyszukaj</button>
+            </div>
+        </form>
+    </div>
+</div>
+{{#if result.length}}
+    {{#each result}}
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-light">
+                {{this.registration_number}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{this.name}}</h5>
+                <p class="card-text"><i
+                        class="bi bi-star-fill"></i> Kategoria: {{this.category}} </p>
+                <p class="card-text"><i
+                        class="bi bi-people-fill"></i> Liczba pasażerów: {{this.number_of_passengers}}</p>
+                <p class="card-text"><i
+                        class="bi bi-currency-dollar"></i> Cena za dzień: {{this.price}}$</p>
+                <div class="d-flex justify-content-end">
+                    <a href="/cars/info/{{this.registration_number}}" type="button"
+                       class="btn btn-primary me-3"><i
+                            class="bi bi-info-circle"> Szczegóły </i></a>
+                    <a href="/cars/edit/{{this.registration_number}}" type="button" class="btn btn-primary me-3"><i
+                            class="bi bi-pencil"> Edytuj </i></a>
+                    <a href="/cars/history/{{this.registration_number}}" type="button" class="btn btn-primary me-3"><i
+                            class="bi bi-clock-history"> Historia </i></a>
+                    <a href="/cars/rent/{{this.registration_number}}" type="button" class="btn btn-primary"><i
+                            class="bi bi-cash"> Wypożycz </i></a></div>
+            </div>
+        </div>
+
+    {{/each}}
+{{else}}
+    <h1>Brak wolnych samochodów w tej chwili</h1>
+{{/if}}

@@ -1,0 +1,37 @@
+{{#if message}}
+    <div class="alert alert-success alert-dismissible fade show mb-5" role="alert">
+        <strong>{{message}}</strong>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/if}}
+
+{{#if error}}
+    <div class="alert alert-danger alert-dismissible fade show mb-5" role="alert">
+        <strong>{{error}}</strong>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/if}}
+
+{{#if result.length}}
+    {{#each result}}
+        <div class="card">
+            <div class="card-header bg-primary text-light">Edytuj samochód</div>
+            <div class="card-body p-4">
+                <form action="/cars/edit/{{this.registration_number}}" method="POST">
+                    {{>carForm}}
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary mt-3">Edytuj</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <p id="temp">{{this.category}}</p>
+    {{/each}}
+{{else}}
+    <h2>Nie ma takiego samochodu</h2>
+{{/if}}
+
+<script src="/js/editCar.js">
+</script>
+

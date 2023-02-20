@@ -1,0 +1,56 @@
+{{#if message}}
+    <div class="alert alert-success alert-dismissible fade show mb-5" role="alert">
+        <strong>{{message}}</strong>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/if}}
+
+{{#if error}}
+    <div class="alert alert-danger alert-dismissible fade show mb-5" role="alert">
+        <strong>{{error}}</strong>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/if}}
+<div class="card">
+    <div class="card-header bg-primary text-light">Edytuj konto</div>
+    <div class="card-body p-4">
+        <form action="/user/settings/{{id}}" method="POST">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="first_name" class="form-label">Imię</label>
+                    <input type="text" class="form-control" name="first_name" value="{{user_name}}" disabled>
+                </div>
+                <div class="col-md-6">
+                    <label for="last_name" class="form-label">Nazwisko</label>
+                    <input type="text" class="form-control" name="last_name" value="{{user_surname}}" disabled>
+                </div>
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" value="{{username}}" name="email" disabled>
+                </div>
+            </div>
+            <br>
+            <div class="row g-3 mb-5">
+                <div class="col-md-6">
+                    <label for="old_pass" class="form-label">Stare hasło</label>
+                    <input type="password" class="form-control" id="old_pass" name="old_pass" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="new_pass" class="form-label">Nowe hasło</label>
+                    <input type="password" class="form-control" id="new_pass" name="new_pass" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="new_pass_rep" class="form-label">Powtórz nowe hasło</label>
+                    <input type="password" class="form-control" id="new_pass_rep" name="new_pass_rep" required>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary mt-3 me-3">Zmień hasło</button>
+                <a href="delete/{{id}}" class="btn btn-primary mt-3">
+                    Usuń konto
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

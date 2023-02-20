@@ -1,0 +1,54 @@
+{{#if message}}
+    <div class="alert alert-success alert-dismissible fade show mb-5" role="alert">
+        <strong>{{message}}</strong>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+{{/if}}
+
+{{#if error}}
+    <div class="alert alert-danger alert-dismissible fade show mb-5" role="alert">
+        <strong>{{error}}</strong>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+{{/if}}
+
+<div class="card">
+    <div class="card-header bg-primary text-light">Wypożycz samochód</div>
+    <div class="card-body p-4">
+        <form id="formularz" method="POST">
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <label for="first_name" class="form-label">Imię</label>
+                    <input type="text" class="form-control" name="first_name" placeholder="Jan" id="first_name" minlength="3" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="last_name" class="form-label">Nazwisko</label>
+                    <input type="text" class="form-control" placeholder="Kowalski" name="last_name" id="last_name" minlength="3" required>
+                </div>
+            </div>
+            <div class="row g-3 mb-5">
+                <div class="col-md-6">
+                    <label for="document_number" class="form-label">Seria dowodu osobistego</label>
+                    <input type="text" class="form-control" placeholder="ABC123" pattern="[a-zA-Z]{3}\d{3}$" id="document_number" name="document_number" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="end" class="form-label">Koniec wypożyczenia</label>
+                    <input type="date" id="end" name="end_date" class="form-control" required>
+                </div>
+            </div>
+            {{#if message}}
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary mt-3" disabled>Wypożycz</button>
+                </div>
+            {{else}}
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary mt-3">Wypożycz</button>
+                </div>
+            {{/if}}
+        </form>
+    </div>
+</div>
+
+<script src="/js/rentCar.js"></script>

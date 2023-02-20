@@ -1,0 +1,24 @@
+{{#if result.length}}
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Numer rejestracyjny</th>
+            <th scope="col">Nazwa</th>
+            <th scope="col">Początek wypożyczenia</th>
+            <th scope="col">Koniec wypożyczenia</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each result}}
+            <tr>
+                <th scope="row">{{this.registration_number}}</th>
+                <td>{{this.name}}</td>
+                <td>{{{formatTime this.start_date "YYYY-MM-DD"}}}</td>
+                <td>{{{formatTime this.end_date "YYYY-MM-DD"}}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <h1>Brak historii wypożyczeń dla tego samochodu</h1>
+{{/if}}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/loginPage.css">
+    <title>Car Rental System</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center text-dark mt-5">Załóż konto w systemie Car Rental!</h2>
+            <div class="response text-center card my-5">
+                {{#if message}}
+                    <h2>{{message}}</h2>
+                {{/if}}
+            </div>
+            <div class="card my-5">
+                <form class="card-body cardbody-color p-lg-5" action="/user/register" method="POST">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="first_name" placeholder="Imię"
+                               min="3" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="last_name" placeholder="Nazwisko"
+                               min="3" required>
+                    </div>
+                    <p class="text-center" id="error"></p>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" id="email" pattern="^[A-Za-z0-9._%+-]+@firma\.pl$" name="email" placeholder="imie.nazwisko@firma.pl"
+                               oninput="checkEmail()" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Hasło"
+                               min="6" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="password_conf" name="password_conf"
+                               min="6" placeholder="Powtórz hasło"
+                               required>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-color px-5 mb-5 w-100">Zarejestruj się</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+<script>
+
+    let err = document.getElementById('error');
+    let email = document.getElementById('email');
+
+    const re = new RegExp("^[A-Za-z0-9._%+-]+@firma\.pl$");
+
+    function checkEmail() {
+        let email = document.getElementById('email');
+        console.log(email.innerHTML)
+
+        if(!re.test(email.value)) {
+            err.innerHTML = "Email musi być w domenie firma.pl"
+        }
+        else {
+            err.innerHTML = ""
+        }
+    }
+</script>
+</body>
+</html>

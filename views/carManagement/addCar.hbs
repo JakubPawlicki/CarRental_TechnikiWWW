@@ -1,0 +1,27 @@
+{{#if message}}
+    <div class="alert alert-success alert-dismissible fade show mb-5" role="alert">
+        <strong>{{message}}</strong>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/if}}
+
+{{#if error}}
+    <div class="alert alert-danger alert-dismissible fade show mb-5" role="alert">
+        <strong>{{error}}</strong>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/if}}
+
+<div class="card">
+    <div class="card-header bg-primary text-light">Dodaj samochód</div>
+    <div class="card-body p-4">
+
+        <form action="/cars/add" method="POST">
+            {{>carForm}}
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary mt-4">Dodaj</button>
+            </div>
+        </form>
+    </div>
+</div>
+
